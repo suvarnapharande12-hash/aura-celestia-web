@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --color-gold: #d4af37;
+  --color-amber-gold: #ffbf00;
+  --color-copper: #b87333;
+}
+
+@layer base {
+  html,
+  body {
+    @apply text-stone-300 bg-[#0a0a0a];
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply text-white;
+  }
+
+  .using-mouse * {
+    outline: none !important;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold text-black px-6 py-3 font-semibold transition-all hover:bg-amber-gold hover:scale-105 active:scale-95;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-linear-to-r from-gold via-amber-gold to-copper bg-clip-text text-transparent;
+  }
+
+  .border-gold {
+    @apply border border-gold/30;
+  }
+
+  @keyframes slow-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slow-zoom {
+    animation: slow-zoom 20s infinite alternate ease-in-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+  }
+
+  .delay-200 { animation-delay: 200ms; }
+  .delay-400 { animation-delay: 400ms; }
+}
